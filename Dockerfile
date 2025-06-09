@@ -1,10 +1,10 @@
-# Stage 1: Build with Maven
-FROM maven:3.9.3-eclipse-temurin-17 AS build
+# Stage 1: Build with Maven + JDK 21
+FROM maven:3.9.3-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run with JDK
+# Stage 2: Run with JDK 21 only
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
