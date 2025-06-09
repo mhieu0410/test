@@ -1,6 +1,9 @@
 # Stage 1: Build with Maven + JDK 21
-FROM maven:3.9.3-eclipse-temurin-21 AS build
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
+
+# Cài Maven thủ công
+RUN apt-get update && apt-get install -y maven
 COPY . .
 RUN mvn clean package -DskipTests
 
