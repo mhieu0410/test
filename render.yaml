@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: springboot-customer-api
-    env: java
-    branch: main
-    buildCommand: "mvn clean package -DskipTests"
-    startCommand: "java -jar target/*.jar"
-    region: singapore
