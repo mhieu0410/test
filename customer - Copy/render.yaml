@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: test
-    env: java
-    branch: main
-    buildCommand: "./mvnw clean package"
-    startCommand: "java -jar target/*.jar"
-    region: singapore
