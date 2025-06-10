@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
-import io.jsonwebtoken.JwtException;
 
 @Component
 public class JwtUtil {
@@ -33,16 +32,4 @@ public class JwtUtil {
                 .getBody()
                 .getSubject();
     }
-
-public boolean validateToken(String token) {
-    try {
-        Jwts.parserBuilder()
-            .setSigningKey(SECRET_KEY)
-            .build()
-            .parseClaimsJws(token);
-        return true;
-    } catch (JwtException | IllegalArgumentException e) {
-        return false;
-    }
-}
 }

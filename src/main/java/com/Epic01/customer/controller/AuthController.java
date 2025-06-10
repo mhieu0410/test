@@ -90,7 +90,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO request){
-        System.out.println("🔐 LOGIN REQUEST: " + request.getEmail());
         return userRepository.findByEmail(request.getEmail())
                 .map(user ->{
                     if(passwordEncoder.matches(request.getPassword(), user.getPassword())){
