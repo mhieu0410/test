@@ -20,20 +20,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // ⚠️ Cần thêm dòng này
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/auth/**",            // Bao trùm cả /login và /register
-                                "/api/auth/register",
-                                "/api/auth/login",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**"
-                        ).permitAll() // ✅ Cho phép truy cập mà không cần xác thực
-                        .anyRequest().authenticated() // Các request khác phải xác thực
-                )
-
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                        .anyRequest().permitAll() // Tạm thời cho phép tất cả
+                );
         return http.build();
     }
 
